@@ -1,7 +1,8 @@
 package com.gildedrose;
 
 public class BackstagePassItem extends BaseItem {
-
+	public static final String NAME = "Backstage passes to a TAFKAL80ETC concert";
+	
 	public BackstagePassItem(Item item) {
 		super(item);
 	}

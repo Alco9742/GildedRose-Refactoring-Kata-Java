@@ -8,16 +8,16 @@ public class BaseItem {
 	}
 	
     public static BaseItem create(Item item){
-    	if (item.name.equals("Aged Brie")){
-    		return new AgedBrieItem(item);
+    	switch(item.name) {
+    		case AgedBrieItem.NAME:
+    			return new AgedBrieItem(item);
+    		case BackstagePassItem.NAME:
+    			return new BackstagePassItem(item);
+    		case SulfurasItem.NAME:
+    			return new SulfurasItem(item);
+    		default:
+    			return new BaseItem(item);
     	}
-    	if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")){
-    		return new BackstagePassItem(item);
-    	}
-    	if (item.name.equals("Sulfuras, Hand of Ragnaros")){
-    		return new SulfurasItem(item);
-    	}
-    	return new BaseItem(item);
     }
     
 	public void updateItem() {
