@@ -1,7 +1,11 @@
 package com.gildedrose;
 
 public class BaseItem {
+	public static final int MINIMUM_QUALITY = 0;
+	private static final int MAXIMUM_QUALITY = 50;
+	
 	protected final Item item;
+
 	
 	public BaseItem(Item item) {
 		this.item = item;
@@ -23,7 +27,7 @@ public class BaseItem {
 	public void updateItem() {
 		updateItemQuality();
 		updateItemSellIn();
-		if (item.sellIn < 0) {
+		if (isExpired()) {
 			processExpiredItem();
 		}
 	}
@@ -33,7 +37,7 @@ public class BaseItem {
 	}
 
 	protected void updateItemSellIn() {
-		item.sellIn = item.sellIn - 1;
+		item.sellIn--;
 	}
 	
 	protected void processExpiredItem() {
@@ -41,14 +45,18 @@ public class BaseItem {
 	}
 	
 	protected void increaseQuality() {
-		if (item.quality < 50) {
+		if (item.quality < MAXIMUM_QUALITY) {
 			item.quality++;
 		}
 	}
 
 	protected void decreaseQuality() {
-		if (item.quality > 0) {
+		if (item.quality > MINIMUM_QUALITY) {
 			item.quality--;
 		}
+	}
+	
+	private boolean isExpired() {
+		return item.sellIn < 0;
 	}
 }

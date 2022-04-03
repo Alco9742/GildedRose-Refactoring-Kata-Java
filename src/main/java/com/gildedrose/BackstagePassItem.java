@@ -20,6 +20,6 @@ public class BackstagePassItem extends BaseItem {
 	
 	@Override
 	protected void processExpiredItem() {
-		item.quality = 0;
+		item.quality = MINIMUM_QUALITY;
 	}
 }
