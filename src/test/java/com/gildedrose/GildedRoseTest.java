@@ -84,6 +84,20 @@ class GildedRoseTest {
 		assertEquals(0, app.items[0].quality);
 	}
 	
+	@Test
+	public void sulfurasSellInDoesntChange() {
+		//"Sulfuras", being a legendary item, never has to be sold or decreases in Quality
+		GildedRose app = testItem("Sulfuras, Hand of Ragnaros", 100, 80);
+		assertEquals(100, app.items[0].sellIn);
+	}
+	
+	@Test
+	public void otherItemsSellInDoesChange() {
+		//"Sulfuras", being a legendary item, never has to be sold or decreases in Quality
+		GildedRose app = testItem("Item", 100, 80);
+		assertEquals(99, app.items[0].sellIn);
+	}
+	
     private GildedRose testItem(String item, Integer sellIn, Integer quality) {
     	Item[] items = new Item[] { new Item(item, sellIn, quality) };
     	GildedRose app = new GildedRose(items);
