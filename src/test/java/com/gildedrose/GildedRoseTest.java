@@ -98,23 +98,35 @@ class GildedRoseTest {
 		assertEquals(99, app.items[0].sellIn);
 	}
 	
+	@Test
 	public void backstageQualityEdgeCase1() {
 		//Check op de edge 10
 		GildedRose app = testItem("Backstage passes to a TAFKAL80ETC concert", 10, 40);
 		assertEquals(42, app.items[0].quality);
 	}
 	
+	@Test
 	public void backstageQualityEdgeCase2() {
 		//Check op de edge 5
 		GildedRose app = testItem("Backstage passes to a TAFKAL80ETC concert", 5, 40);
 		assertEquals(43, app.items[0].quality);
 	}
 	
+	@Test
+	public void conjuredItemsDegradeDouble() {
+		//"Conjured" items degrade in Quality twice as fast as normal items
+		GildedRose app = testItem("Conjured toast", 6, 40);
+		assertEquals(38, app.items[0].quality);
+	}
+	
+	@Test
     private GildedRose testItem(String item, Integer sellIn, Integer quality) {
     	Item[] items = new Item[] { new Item(item, sellIn, quality) };
     	GildedRose app = new GildedRose(items);
     	app.updateQuality();
     	return app;
     }
+    
+    
 
 }
