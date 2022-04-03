@@ -12,16 +12,19 @@ public class BaseItem {
 	}
 	
     public static BaseItem create(Item item){
-    	switch(item.name) {
-    		case AgedBrieItem.NAME:
-    			return new AgedBrieItem(item);
-    		case BackstagePassItem.NAME:
-    			return new BackstagePassItem(item);
-    		case SulfurasItem.NAME:
-    			return new SulfurasItem(item);
-    		default:
-    			return new BaseItem(item);
+    	if (item.name.equals(AgedBrieItem.NAME)){
+    		return new AgedBrieItem(item);
     	}
+    	if (item.name.equals(BackstagePassItem.NAME)){
+    		return new BackstagePassItem(item);
+    	}
+    	if (item.name.equals(SulfurasItem.NAME)){
+    		return new SulfurasItem(item);
+    	}
+    	if (item.name.startsWith(ConjuredItem.NAME)){
+    		return new ConjuredItem(item);
+    	}
+    	return new BaseItem(item);
     }
     
 	public void updateItem() {
