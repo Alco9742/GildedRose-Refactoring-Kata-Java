@@ -10,10 +10,10 @@ public class BackstagePassItem extends BaseItem {
 	@Override
 	protected void updateItemQuality(){
 		increaseQuality();
-		if (item.sellIn < 11) {
+		if (item.sellIn <= 10) {
 		   	increaseQuality();
 	    }	
-		if (item.sellIn < 6) {
+		if (item.sellIn <= 5) {
 		   	increaseQuality();
 		}
 	}

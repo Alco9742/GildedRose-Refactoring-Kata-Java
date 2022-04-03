@@ -98,6 +98,18 @@ class GildedRoseTest {
 		assertEquals(99, app.items[0].sellIn);
 	}
 	
+	public void backstageQualityEdgeCase1() {
+		//Check op de edge 10
+		GildedRose app = testItem("Backstage passes to a TAFKAL80ETC concert", 10, 40);
+		assertEquals(42, app.items[0].quality);
+	}
+	
+	public void backstageQualityEdgeCase2() {
+		//Check op de edge 5
+		GildedRose app = testItem("Backstage passes to a TAFKAL80ETC concert", 5, 40);
+		assertEquals(43, app.items[0].quality);
+	}
+	
     private GildedRose testItem(String item, Integer sellIn, Integer quality) {
     	Item[] items = new Item[] { new Item(item, sellIn, quality) };
     	GildedRose app = new GildedRose(items);
