@@ -1,7 +1,7 @@
 package com.gildedrose;
 
 public class BaseItem {
-	private final Item item;
+	protected final Item item;
 	
 	public BaseItem(Item item) {
 		this.item = item;
@@ -10,6 +10,9 @@ public class BaseItem {
     public static BaseItem create(Item item){
     	if (item.name.equals("Aged Brie")){
     		return new AgedBrieItem(item);
+    	}
+    	if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")){
+    		return new BackstagePassItem(item);
     	}
     	return new BaseItem(item);
     }
@@ -23,21 +26,9 @@ public class BaseItem {
 	}
 
 	protected void updateItemQuality() {
-		if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")){
-			increaseQuality();
-			if (item.sellIn < 11) {
-			   	increaseQuality();
-		    }	
-			if (item.sellIn < 6) {
-			   	increaseQuality();
-			}
-		}
-		else {
-			if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-				decreaseQuality();
-		    }
-		}
-	
+		if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
+			decreaseQuality();
+		   }
 	}
 
 	protected void updateItemSellIn() {
@@ -47,9 +38,7 @@ public class BaseItem {
 	}
 	
 	protected void processExpiredItem() {
-		if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-			item.quality = 0;
-		} else if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
+		if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
 			decreaseQuality();
 		}
 	}
